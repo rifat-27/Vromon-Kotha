@@ -1,6 +1,6 @@
 import pkg from 'bcryptjs'
 const { compareSync, hashSync } = pkg
-import User from '../models/User.js'
+import User from '../models/user.js'
 
 export const getAllUsers = async (req, res) => {
   let users

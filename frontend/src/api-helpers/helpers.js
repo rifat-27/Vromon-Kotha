@@ -1,6 +1,8 @@
 import axios from "axios";
 export const getAllPosts = async () => {
-  const res = await axios.get("/posts");
+  const res = await axios.get(
+    'https://vromon-kotha-rifat-27.vercel.app/posts'
+  )
   if (res.status !== 200) {
     return console.log("Some Error Occurred");
   }
@@ -11,12 +13,17 @@ export const getAllPosts = async () => {
 
 export const sendAuthRequest = async (signup, data) => {
   const res = await axios
-    .post(`/user/${signup ? "signup" : "login"}/`, {
-      name: data.name ? data.name : "",
-      email: data.email,
-      password: data.password,
-    })
-    .catch((err) => console.log(err));
+    .post(
+      `https://vromon-kotha-rifat-27.vercel.app/user/${
+        signup ? 'signup' : 'login'
+      }/`,
+      {
+        name: data.name ? data.name : '',
+        email: data.email,
+        password: data.password,
+      }
+    )
+    .catch((err) => console.log(err))
 
   if (res.status !== 200 && res.status !== 201) {
     return console.log("Unable to Authenticate");
@@ -27,15 +34,15 @@ export const sendAuthRequest = async (signup, data) => {
 
 export const addPost = async (data) => {
   const res = await axios
-    .post("/posts/", {
+    .post('https://vromon-kotha-rifat-27.vercel.app/posts/', {
       title: data.title,
       description: data.description,
       location: data.location,
       image: data.imageUrl,
       date: data.date,
-      user: localStorage.getItem("userId"),
+      user: localStorage.getItem('userId'),
     })
-    .catch((err) => console.log(err));
+    .catch((err) => console.log(err))
 
   if (res.status !== 201) {
     return console.log("Error Occurred");
@@ -46,7 +53,9 @@ export const addPost = async (data) => {
 };
 
 export const getPostDetails = async (id) => {
-  const res = await axios.get(`/posts/${id}`).catch((err) => console.log(err));
+  const res = await axios
+    .get(`https://vromon-kotha-rifat-27.vercel.app/posts/${id}`)
+    .catch((err) => console.log(err))
   if (res.status !== 200) {
     return console.log("Unable to fetch diary");
   }
@@ -57,13 +66,13 @@ export const getPostDetails = async (id) => {
 
 export const postUpdate = async (data, id) => {
   const res = await axios
-    .put(`/posts/${id}`, {
+    .put(`https://vromon-kotha-rifat-27.vercel.app/posts/${id}`, {
       title: data.title,
       description: data.description,
       location: data.location,
       image: data.imageUrl,
     })
-    .catch((err) => console.log(err));
+    .catch((err) => console.log(err))
 
   if (res.status !== 200) {
     return console.log("Unable to udpate");
@@ -75,8 +84,8 @@ export const postUpdate = async (data, id) => {
 
 export const postDelete = async (id) => {
   const res = await axios
-    .delete(`/posts/${id}`)
-    .catch((err) => console.log(err));
+    .delete(`https://vromon-kotha-rifat-27.vercel.app/posts/${id}`)
+    .catch((err) => console.log(err))
 
   if (res.status !== 200) {
     return console.log("Unable to delete");
@@ -88,7 +97,9 @@ export const postDelete = async (id) => {
 
 export const getUserDetails = async () => {
   const id = localStorage.getItem("userId");
-  const res = await axios.get(`/user/${id}`).catch((err) => console.log(err));
+  const res = await axios
+    .get(`https://vromon-kotha-rifat-27.vercel.app/user/${id}`)
+    .catch((err) => console.log(err))
 
   if (res.status !== 200) {
     return console.log("No user found");
